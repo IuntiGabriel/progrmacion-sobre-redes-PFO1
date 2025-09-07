@@ -47,14 +47,5 @@ for row in conn.execute("SELECT id, contenido, fecha_envio, ip_cliente FROM mens
 conn.close()
 ```
 
-## Notas de diseño
-- **SO_REUSEADDR** permite reiniciar el servidor sin esperar a que el puerto se libere.
-- El **timestamp** se genera en formato ISO (`YYYY-MM-DDTHH:MM:SS`).
-- Se maneja explícitamente:
-  - *Puerto ocupado* (error de `bind`): el servidor informa y sale con código 1.
-  - *DB no accesible* (error de SQLite): se informa y sale con código 2.
-  - *Fallas de INSERT*: se informa en stderr pero el servidor continúa atendiendo.
-- Protocolo simple: el cliente abre una conexión por mensaje y espera la confirmación.
-
 
 
